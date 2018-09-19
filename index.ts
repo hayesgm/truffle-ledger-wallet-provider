@@ -19,7 +19,10 @@ export default function walletProviderEngineFactory(providerUri, networkId, deri
     const ledgerSubProvider = new LedgerSubprovider({
         networkId: networkId,
         derivationPath: derivationPath,
-        ledgerEthereumClientFactoryAsync: createLedgerNodeJs
+        ledgerEthereumClientFactoryAsync: createLedgerNodeJs,
+        accountFetchingConfigs: {
+            shouldAskForOnDeviceConfirmation: true
+        }
     });
 
     providerEngine.addProvider(ledgerSubProvider);
